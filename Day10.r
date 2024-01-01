@@ -12,3 +12,5 @@ print("Confusion Matrix: ")
 print(conf_matrix)
 accuracy<- sum(diag(conf_matrix)) / sum(conf_matrix)
 print(paste("Accuracy: ", round(accuracy ,2)))
+
+#knn
