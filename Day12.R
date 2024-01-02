@@ -1,0 +1,6 @@
+install.packages("corrplot")
+library(corrplot)
+data(iris)
+cor_matrix <- cor(iris[,1:4])
+print(cor_matrix)
+corrplot(cor_matrix,method = "color",type = "upper",addrect = 3)
