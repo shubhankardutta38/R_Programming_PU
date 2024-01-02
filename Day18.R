@@ -1,0 +1,22 @@
+library(rpart)
+data("iris")
+head(iris)
+set.seed(123)
+sample_indices <- sample(1:nrow(iris),0.7*nrow(iris))
+train_data <- iris[sample_indices,]
+test_data <- iris[-sample_indices,]
+decision_tree_model <- rpart(Species~.,data = train_data)
+plot(decision_tree_model)
+text(decision_tree_model , cex = 0.5)
+predictions <- predict(decision_tree_model , newdata = test_data,type = "class")
+conf_matrix <- table(predictions , test_data$Species)
+print(conf_matrix)
+
+accuracy <- sum(diag(conf_matrix)/sum(conf_matrix))
+print(accuracy)
+precission <- conf_matrix[2,2]/sum(conf_matrix[,2])
+print(precission)
+recall <- conf_matrix[2,2]/sum(conf_matrix[2,])
+print(recall)
+f1_score <- 2*(precission*recall)/(precission+recall)
+print(f1_score)
